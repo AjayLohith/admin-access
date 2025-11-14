@@ -9,37 +9,85 @@ import userRoutes from './routes/users.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware
+// --------------------
+//  CORS CONFIGURATION
+// --------------------
+
+// Allow localhost and your deployed Vercel frontend
+const whitelist = [
+  process.env.FRONTEND_URL,       // your Vercel frontend
+  "http://localhost:3000",        // dev
+  "http://127.0.0.1:3000"         // dev
+].filter(Boolean); // remove undefined if FRONTEND_URL is missing
+
+console.log("Allowed CORS origins:", whitelist);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    console.log("Incoming CORS request from:", origin);
+
+    // Allow server-to-server, Postman, curl (no origin)
+    if (!origin) return callback(null, true);
+
+    if (whitelist.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("❌ Blocked by CORS:", origin);
+    return callback(
+      new Error(`CORS Error: Origin ${origin} not allowed by CORS policy.`),
+      false
+    );
+  },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 };
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Preflight support
+
+// --------------------
+//  MIDDLEWARE
+// --------------------
 app.use(express.json());
 
-// Routes
+// --------------------
+//  ROUTES
+// --------------------
 app.use('/api/auth', authRoutes);
 app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  res.json({ status: "OK", message: "Server is running" });
 });
 
-// Connect to MongoDB
+// CORS debugging route
+app.get('/api/cors-debug', (req, res) => {
+  res.json({
+    incomingOrigin: req.get("origin") || null,
+    allowedOrigins: whitelist,
+    frontendUrlEnv: process.env.FRONTEND_URL || null
+  });
+});
+
+// --------------------
+//  DATABASE + SERVER
+// --------------------
+const PORT = process.env.PORT || 5000;
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
+    console.log("Connected to MongoDB");
+
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
+    );
   })
   .catch((error) => {
-    console.error('MongoDB connection error:', error);
+    console.error("MongoDB connection error:", error);
     process.exit(1);
   });
-
