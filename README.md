@@ -399,10 +399,6 @@ Create a `.env` file in the `frontend` directory:
 VITE_API_URL=http://localhost:5000/api
 ```
 
-**For Production:**
-- Set `VITE_API_URL` to your deployed backend URL
-
-**⚠️ Security Note:** Never commit `.env` files to Git. They are already in `.gitignore`.
 
 ## Security Features
 
@@ -415,11 +411,5 @@ VITE_API_URL=http://localhost:5000/api
 - Role-based access control (Users can only access their own items)
 - Admin privileges for viewing/managing all items
 
-## License
 
-This project is open source and available for portfolio use.
-
-## Author
-
-Created as a full-stack mini project assignment.
 
