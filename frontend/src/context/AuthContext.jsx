@@ -3,7 +3,17 @@ import axios from 'axios'
 
 const AuthContext = createContext()
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+// Get API URL from environment variable
+const getApiUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl) {
+    // Ensure it ends with /api if not already
+    return envUrl.endsWith('/api') ? envUrl : `${envUrl.replace(/\/$/, '')}/api`;
+  }
+  return 'http://localhost:5000/api';
+};
+
+const API_URL = getApiUrl();
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
@@ -20,6 +30,9 @@ export const AuthProvider = ({ children }) => {
 
   // Configure axios defaults
   axios.defaults.baseURL = API_URL
+  
+  // Log API URL for debugging (remove in production if needed)
+  console.log('API URL:', API_URL);
 
   // Check if user is logged in on mount
   useEffect(() => {

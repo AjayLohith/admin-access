@@ -15,13 +15,13 @@ Located in `backend/.env`:
 - **MONGODB_URI**: MongoDB connection string (contains credentials)
 - **JWT_SECRET**: Secret key for signing JWT tokens (MUST be strong and random)
 - **JWT_EXPIRE**: JWT token expiration time (default: 30d)
-- **FRONTEND_URL**: Frontend URL for CORS configuration
+- **FRONTEND_URL**: Frontend URL for CORS configuration (Production: https://admin-access-kappa.vercel.app)
 
 ### Frontend Configuration
 
 Located in `frontend/.env`:
 
-- **VITE_API_URL**: Backend API endpoint URL
+- **VITE_API_URL**: Backend API endpoint URL (Production: https://admin-access-2-a9g1.onrender.com/api)
 
 ## Generating Secure Secrets
 

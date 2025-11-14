@@ -1,0 +1,11 @@
+# ============================================
+# VERCEL FRONTEND ENVIRONMENT VARIABLES
+# Copy and paste these into Vercel Dashboard
+# ============================================
+# 
+# IMPORTANT: The URL MUST end with /api
+# After setting, you MUST redeploy for changes to take effect
+# ============================================
+
+VITE_API_URL=https://admin-access-2-a9g1.onrender.com/api
+

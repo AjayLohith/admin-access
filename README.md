@@ -376,11 +376,11 @@ Create a `.env` file in the `backend` directory:
 
 ```env
 PORT=5000
-NODE_ENV=development
+NODE_ENV=production
 MONGODB_URI=your_mongodb_connection_string_here
 JWT_SECRET=your_jwt_secret_key_here
 JWT_EXPIRE=30d
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=https://admin-access-kappa.vercel.app
 ```
 
 **Important for Production:**
@@ -396,11 +396,12 @@ FRONTEND_URL=http://localhost:3000
 Create a `.env` file in the `frontend` directory:
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=https://admin-access-2-a9g1.onrender.com/api
 ```
 
-**For Production:**
-- Set `VITE_API_URL` to your deployed backend URL
+**Production URLs:**
+- Frontend: https://admin-access-kappa.vercel.app
+- Backend API: https://admin-access-2-a9g1.onrender.com/api
 
 **⚠️ Security Note:** Never commit `.env` files to Git. They are already in `.gitignore`.
 

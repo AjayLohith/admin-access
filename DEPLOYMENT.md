@@ -21,7 +21,7 @@ JWT_SECRET=your_strong_random_secret_key_here
 JWT_EXPIRE=30d
 
 # Frontend URL (for CORS)
-FRONTEND_URL=https://your-frontend-domain.com
+FRONTEND_URL=https://admin-access-kappa.vercel.app
 ```
 
 **Important:**
@@ -38,7 +38,7 @@ Create a `.env` file in the `frontend` directory with:
 
 ```env
 # Backend API URL
-VITE_API_URL=https://your-backend-api-url.com/api
+VITE_API_URL=https://admin-access-2-a9g1.onrender.com/api
 ```
 
 **Important:**
