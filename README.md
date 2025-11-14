@@ -251,7 +251,7 @@ Authorization: Bearer <token>
    - `NODE_ENV=production`
 4. Deploy
 
-### Frontend Deployment (Vercel/Netlify)
+### Frontend Deployment (Vercel)
 
 1. Build the frontend:
 ```bash
