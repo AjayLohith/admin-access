@@ -158,20 +158,20 @@ Register a new user.
 **Request Body:**
 ```json
 {
-  "name": "John Doe",
-  "email": "john@example.com",
+  "name": "Ajay",
+  "email": "22l31a0252@vignaniit.edu.in",
   "password": "password123",
-  "role": "User" // or "Admin"
+  "role": "Admin"
 }
 ```
 
 **Response:**
 ```json
 {
-  "_id": "user_id",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "role": "User",
+  "_id": "691747a3acae06806ed030c8",
+  "name": "Ajay",
+  "email": "22l31a0252@vignaniit.edu.in",
+  "role": "Admin",
   "token": "jwt_token_here"
 }
 ```
@@ -182,20 +182,23 @@ Login user.
 **Request Body:**
 ```json
 {
-  "email": "john@example.com",
+  "email": "22l31a0252@vignaniit.edu.in",
   "password": "password123"
 }
+
 ```
 
 **Response:**
 ```json
 {
-  "_id": "user_id",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "role": "User",
+  "_id": "691747a3acae06806ed030c8",
+  "name": "Ajay",
+  "email": "22l31a0252@vignaniit.edu.in",
+  "role": "Admin",
   "token": "jwt_token_here"
 }
+
+
 ```
 
 #### GET `/api/auth/me`
@@ -209,11 +212,12 @@ Authorization: Bearer <token>
 **Response:**
 ```json
 {
-  "_id": "user_id",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "role": "User"
+  "_id": "691747a3acae06806ed030c8",
+  "name": "Ajay",
+  "email": "22l31a0252@vignaniit.edu.in",
+  "role": "Admin"
 }
+
 ```
 
 ### Items Endpoints (All Protected)
@@ -299,10 +303,10 @@ Authorization: Bearer <token>
 
 ## Deployment
 
-### Backend Deployment (Render/Railway)
+### Backend Deployment (Render)
 
 1. Push your code to GitHub
-2. Connect your repository to [Render](https://render.com) or [Railway](https://railway.app)
+2. Connect your repository to [Render](https://render.com)
 3. Set environment variables:
    - `MONGODB_URI`
    - `JWT_SECRET`
@@ -324,11 +328,7 @@ npm run build
    - Set output directory: `dist`
    - Add environment variable: `VITE_API_URL` (your backend URL)
 
-3. Or deploy to [Netlify](https://netlify.com):
-   - Connect your GitHub repository
-   - Set build command: `npm run build`
-   - Set publish directory: `dist`
-   - Add environment variable: `VITE_API_URL` (your backend URL)
+
 
 ## Usage
 
@@ -416,11 +416,4 @@ VITE_API_URL=https://admin-access-2-a9g1.onrender.com/api
 - Role-based access control (Users can only access their own items)
 - Admin privileges for viewing/managing all items
 
-## License
-
-This project is open source and available for portfolio use.
-
-## Author
-
-Created as a full-stack mini project assignment.
 
