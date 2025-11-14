@@ -372,13 +372,37 @@ Tests cover:
 ## Environment Variables
 
 ### Backend (.env)
-- `PORT` - Server port (default: 5000)
-- `MONGODB_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret key for JWT tokens
-- `NODE_ENV` - Environment (development/production)
+Create a `.env` file in the `backend` directory:
+
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=your_mongodb_connection_string_here
+JWT_SECRET=your_jwt_secret_key_here
+JWT_EXPIRE=30d
+FRONTEND_URL=http://localhost:3000
+```
+
+**Important for Production:**
+- `JWT_SECRET`: Generate a strong random string (32+ characters)
+  ```bash
+  openssl rand -base64 32
+  ```
+- `MONGODB_URI`: Your MongoDB Atlas connection string
+- `FRONTEND_URL`: Your deployed frontend URL (for CORS)
+- `NODE_ENV`: Set to `production` in production
 
 ### Frontend (.env)
-- `VITE_API_URL` - Backend API URL
+Create a `.env` file in the `frontend` directory:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+**For Production:**
+- Set `VITE_API_URL` to your deployed backend URL
+
+**⚠️ Security Note:** Never commit `.env` files to Git. They are already in `.gitignore`.
 
 ## Security Features
 
